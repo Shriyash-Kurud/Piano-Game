@@ -1,0 +1,111 @@
+
+    :root{
+      --white-w: 52px;
+      --white-h: 210px;
+      --white-spacing: -4px;             
+      --white-step: calc(var(--white-w) + var(--white-spacing));
+      --black-w: 38px;
+      --black-h: 150px;
+      --black-offset: 27px;             
+
+      --white-grad1: rgb(131,114,97);
+      --white-grad2: rgb(172,208,212);
+      --white-active-grad1: rgb(172,208,212);
+      --white-active-grad2: rgb(131,114,97);
+
+      --black-grad1: rgb(114,43,43);
+      --black-grad2: rgb(20,5,5);
+      --black-active-grad1: rgb(44,15,15);
+      --black-active-grad2: rgb(116,78,78);
+
+      --white-border: 2px solid black;
+      --white-font: monospace;
+      --black-font: cursive;
+      --label-offset: 55px;               
+    }
+
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(rgb(126,117,117), rgb(0,0,0));
+      font-family: sans-serif;
+    }
+
+    .piano{
+      position: relative;
+      display: flex;           
+      gap: 0;
+      margin-left: 4px;          
+      user-select: none;
+    }
+
+    .white{
+      box-sizing: border-box;
+      height: var(--white-h);
+      width: var(--white-w);
+      margin-left: var(--white-spacing);
+      background-image: linear-gradient(var(--white-grad1), var(--white-grad2));
+      border: var(--white-border);
+      outline: none;
+      cursor: pointer;
+      font-family: var(--white-font);
+      color: black;
+      padding-top: calc(var(--white-h) - var(--label-offset)); 
+      font-size: 18px;
+      border-radius: 0 0 5px 5px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .piano .white:first-child{
+      border-radius: 10px 0 5px 25px;
+      margin-left: 0;   
+    }
+    .piano .white:last-child{
+      border-radius: 0 10px 25px 5px;
+    }
+
+    .white.active{
+      background-image: linear-gradient(var(--white-active-grad1), var(--white-active-grad2));
+    }
+
+    .black{
+      position: absolute;
+      top: 0;
+      height: var(--black-h);
+      width: var(--black-w);
+      left: calc(var(--black-offset) + (var(--white-step) * var(--pos, 0)));
+      background-image: linear-gradient(var(--black-grad1), var(--black-grad2));
+      border: 2px solid black;
+      border-radius: 0 0 2px 2px;
+      outline: none;
+      cursor: pointer;
+      font-family: var(--black-font);
+      color: white;
+      padding-top: calc(var(--black-h) - 40px);
+      z-index: 10;
+      text-align: center;
+    }
+
+    .black.active{
+      background-image: linear-gradient(var(--black-active-grad1), var(--black-active-grad2));
+    }
+
+    .white:focus, .black:focus {
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 420px){
+      :root{
+        --white-w: 40px;
+        --white-h: 170px;
+        --black-w: 30px;
+        --black-h: 120px;
+        --black-offset: 18px;
+        --label-offset: 45px;
+      }
+    }
